@@ -1,1 +1,1 @@
-target_sources (tmp PRIVATE "main.cpp")
+target_sources (Templates PRIVATE "main.cpp")
