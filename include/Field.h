@@ -1,11 +1,20 @@
 #include <string>
-template<class T>
-class Field {
+#include "BaseField.h"
+#include "Validator.h"
 
+template<class T>
+//class Field :public BaseField {
+class Field{
 public:
-	Field(const std::string& re) :m_request(re){};
+	Field(const std::string& re) :m_request(re){}
+	void addValidator(Validator <T>* val);
+
 private:
 	T m_info;
 	std::string m_request;
-
+	Validator <T>* m_validator;
+};
+template<typename T>
+void Field<T>::addValidator(Validator <T>* val) {
+	m_validator = val;
 };

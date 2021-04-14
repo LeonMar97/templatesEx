@@ -1,5 +1,8 @@
 #include "Validator.h"
-//class Valditor;
-class NoDigitValidator :public Validator {
+#include <string>
 
+//class Valditor;
+
+class NoDigitValidator :public Validator<std::string> {
+	using Validator::Validator;
 };
