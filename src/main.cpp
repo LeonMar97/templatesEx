@@ -7,7 +7,6 @@
 #include <chrono>  // for currentYear() implementation
 #include <ctime>   // for currentYear() implementation
 
-
 //------------------- User includes ----------------------------
 
 // A class that represents a form. A form has many fields
@@ -68,8 +67,7 @@ int main()
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
-}
-    /*
+
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();
@@ -77,7 +75,8 @@ int main()
     
     // Get the input only for empty or not valid fields
     myForm.fillForm();
-
+}
+    /*
     // Validation loop
     while (!myForm.validateForm())
     {

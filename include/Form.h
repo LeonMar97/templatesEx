@@ -9,6 +9,7 @@ public:
 	Form() {};
 	template<typename T>
 	void addField(Field<T>* curField);
+	void fillForm();
 private:
 	std::vector<BaseField*>m_fields ;
 };
