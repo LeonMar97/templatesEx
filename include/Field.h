@@ -2,7 +2,7 @@
 #include "BaseField.h"
 #include "Validator.h"
 
-template<class T>
+template<typename T>
 //class Field :public BaseField {
 class Field{
 public:
@@ -12,8 +12,9 @@ public:
 private:
 	T m_info;
 	std::string m_request;
-	Validator <T>* m_validator;
+	Validator<T>* m_validator;
 };
+
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
 	m_validator = val;
