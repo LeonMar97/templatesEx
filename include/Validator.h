@@ -1,8 +1,8 @@
+#pragma once
 #include<iostream>
 #include <string>
-#include "BaseValidator.h"
 template <class T>
-class Validator:public BaseValidator {
+class Validator {
 	Validator();
 		//bool operator()(T t1);
 

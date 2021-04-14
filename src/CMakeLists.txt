@@ -4,5 +4,5 @@ target_sources (Templates PRIVATE
 								  "NoDigitValidator.cpp"
 								  "Form.cpp"
 								  "BaseField.cpp"
-								  "BaseValidator.cpp"
+								 
 								  "Validator.cpp")

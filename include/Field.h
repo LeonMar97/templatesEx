@@ -1,10 +1,11 @@
+#pragma once
 #include <string>
 #include "BaseField.h"
 #include "Validator.h"
 
 template<typename T>
-//class Field :public BaseField {
-class Field{
+class Field :public BaseField {
+
 public:
 	Field(const std::string& re) :m_request(re){}
 	void addValidator(Validator <T>* val);

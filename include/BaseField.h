@@ -1,3 +1,4 @@
+#pragma once
 //basic class for pointing at same tamplate field..
 class BaseField {
 

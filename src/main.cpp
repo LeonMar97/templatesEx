@@ -57,23 +57,24 @@ int main()
 {
     // Creating the form fields
     auto nameField = std::make_unique<Field<std::string>>("What is your name?");
-   
+
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
     
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
-   
+
 
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
-   
-
+}
+    /*
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();
 
+    
     // Get the input only for empty or not valid fields
     myForm.fillForm();
 
@@ -92,7 +93,7 @@ int main()
     std::cout << myForm << '\n';
     displayPrice(totalPeopleField.get()->getContent(), pairRoomsField.get()->getContent() + familyRoomsField.get()->getContent());
 }
-
+*/
 void displayWelcomeMessage()
 {
     std::cout << "+---------------------------------------------------+\n"
