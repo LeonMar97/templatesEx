@@ -63,7 +63,6 @@ int main()
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
 
-
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
@@ -75,8 +74,8 @@ int main()
     
     // Get the input only for empty or not valid fields
     myForm.fillForm();
+
 }
-    /*
     // Validation loop
     while (!myForm.validateForm())
     {
@@ -86,7 +85,7 @@ int main()
         std::cout << myForm << '\n';
         myForm.fillForm();
     }
-
+    /*
     clearScreen();
     displayGoodbyeMessage();
     std::cout << myForm << '\n';

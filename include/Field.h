@@ -11,6 +11,7 @@ public:
 	void addValidator(Validator <T>* val);
 	void print_request();
 	void fillInfo();
+	bool validInfo();
 
 private:
 	T m_info;
@@ -31,4 +32,9 @@ void Field<T>::print_request() {
 template<typename T>
 void Field<T>::fillInfo() {
 	std::cin >> m_info;
+}
+
+template<typename T>
+bool Field<T>::validInfo() {
+	return m_validator->checkValid(m_info);
 }

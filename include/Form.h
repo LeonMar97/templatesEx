@@ -10,11 +10,13 @@ public:
 	template<typename T>
 	void addField(Field<T>* curField);
 	void fillForm();
+	bool validateForm();
 private:
-	std::vector<BaseField*>m_fields ;
+	std::vector<BaseField*>m_validFields ;
+	std::vector<BaseField*>m_invalidFields ;
 };
 
 template<typename T>
 void Form::addField(Field<T>* curField) {
-	m_fields.push_back(curField);
+	m_invalidFields.push_back(curField);
 }
