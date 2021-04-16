@@ -5,11 +5,7 @@ template <class T>
 class Validator {
 public:
 	Validator() {};
-	virtual bool check() = 0;
-	virtual bool operator()(const T& t1) {
-		check();
-	}
-
+	virtual bool checkValid(T) = 0;
 private :
 	std::string m_msg;
 };

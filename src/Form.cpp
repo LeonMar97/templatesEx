@@ -12,9 +12,9 @@ void Form::fillForm() {
 }
 bool Form::validateForm() {
 	for (int i = 0; i < m_invalidFields.size(); i++) {
-		auto field = m_invalidFields[i];
-		if (field->valid_info()) {
-			m_validFields.push_back(field);
+		auto baseField = m_invalidFields[i];
+		if (baseField->validInfo()) {
+			m_validFields.push_back(baseField);
 			m_invalidFields.erase(m_invalidFields.begin() + i);
 		}
 		return m_invalidFields.empty();

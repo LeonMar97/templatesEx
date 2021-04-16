@@ -59,7 +59,7 @@ int main()
 
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
-    
+
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
 
@@ -71,11 +71,10 @@ int main()
     clearScreen();
     displayWelcomeMessage();
 
-    
+
     // Get the input only for empty or not valid fields
     myForm.fillForm();
 
-}
     // Validation loop
     while (!myForm.validateForm())
     {
@@ -85,6 +84,7 @@ int main()
         std::cout << myForm << '\n';
         myForm.fillForm();
     }
+}
     /*
     clearScreen();
     displayGoodbyeMessage();
