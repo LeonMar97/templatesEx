@@ -24,6 +24,7 @@ bool Form::validateForm() {
 	return m_invalidFields.empty();
 }
 
+//operator for printing field
 std::ostream& operator<<(std::ostream& os, const Form& form) {
 	for (auto baseField : form.m_invalidFields) {
 		os << *baseField;
