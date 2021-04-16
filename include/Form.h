@@ -24,7 +24,8 @@ void Form::addField(Field<T>* curField) {
 
 std::ostream& operator<<(std::ostream& os, const Form& form) {
 	for (auto baseField : form.m_invalidFields) {
-		baseField->print_request();
-		os << " = " << baseField->getInfo
+		os << baseField ;
+		
 	}
+	return os;
 }
