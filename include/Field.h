@@ -9,11 +9,10 @@ class Field :public BaseField {
 public:
 	Field(const std::string& re) :m_request(re), m_validator(NULL){}
 	void addValidator(Validator <T>* val);
-	 std::ostream& operator << (std::ostream&,const  BaseField &)override;
 	void fillInfo();
-	
 	bool validInfo();
-	virtual void print_request() ;
+	void print_request()override ;
+	void print(std::ostream&) override;
 private:
 	T m_info;
 	std::string m_request;
@@ -30,13 +29,6 @@ void Field<T>::print_request() {
 }
 
 template<typename T>
-std::ostream& operator << (std::ostream& os,const  BaseField&b ) {
-	Field<T> cur = (static_cast<Field<T>>(b));
-	return os<<cur.m_request<< " = " <<cur.m_info;
-}
-
-
-template<typename T>
 void Field<T>::fillInfo() {
 	std::cin >> m_info;
 }
@@ -45,7 +37,7 @@ template<typename T>
 bool Field<T>::validInfo() {
 	return m_validator->checkValid(m_info);
 }
-
-
-
-
+template<typename T>
+void Field<T>::print(std::ostream& os) {
+	os << m_request << " = " << m_info;
+}

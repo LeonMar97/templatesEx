@@ -22,10 +22,3 @@ void Form::addField(Field<T>* curField) {
 	m_invalidFields.push_back(curField);
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& form) {
-	for (auto baseField : form.m_invalidFields) {
-		os << baseField ;
-		
-	}
-	return os;
-}

@@ -8,11 +8,11 @@ void Form::fillForm() {
 	
 	for (auto field  : m_invalidFields) {
 		
-		std::cout <<field;
+		field->print_request();
 		field->fillInfo();
 	}
-		
 }
+
 bool Form::validateForm() {
 	for (int i = 0; i < m_invalidFields.size(); i++) {
 		auto baseField = m_invalidFields[i];
@@ -20,6 +20,13 @@ bool Form::validateForm() {
 			m_validFields.push_back(baseField);
 			m_invalidFields.erase(m_invalidFields.begin() + i);
 		}
-		return m_invalidFields.empty();
 	}
+	return m_invalidFields.empty();
+}
+
+std::ostream& operator<<(std::ostream& os, const Form& form) {
+	for (auto baseField : form.m_invalidFields) {
+		os << *baseField;
+	}
+	return os;
 }
