@@ -5,5 +5,5 @@
 class IDValidator:public Validator<uint32_t> {
 public:
 	using Validator::Validator;
-	bool checkValid(int) override;
+	bool checkValid(uint32_t) override;
 };
