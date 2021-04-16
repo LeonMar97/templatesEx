@@ -14,6 +14,7 @@ public:
 	void print_request()override ;
 	void print(std::ostream&) override;
 private:
+	//T m_error;
 	T m_info;
 	std::string m_request;
 	Validator<T>* m_validator;
@@ -39,5 +40,9 @@ bool Field<T>::validInfo() {
 }
 template<typename T>
 void Field<T>::print(std::ostream& os) {
-	os << m_request << " = " << m_info;
+	os << std::endl;
+	os << "---------------------------------------" << std::endl;
+	os << "---------------------------------------" << std::endl;
+
+	os << m_request << " = " << m_info<<'\t'<<m_validator->error_msg()<<std::endl;
 }
