@@ -24,6 +24,7 @@
 // ID validation is done using the control digit.
 // Works only on the type 'uint32_t'.
 #include "IDValidator.h"
+#include "RangeValidator.h"
 
 
 //------------------- Function declarations ----------------------------
@@ -61,19 +62,23 @@ int main()
     // Creating the form fields
     auto nameField = std::make_unique<Field<std::string>>("What is your name?");
     auto idField = std::make_unique<Field<uint32_t>>("What is your ID?");
+    auto yearOfBirthField = std::make_unique<Field<int>>("What is your year of birth?");
 
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
     auto idValidator = std::make_unique<IDValidator>();
+    auto ageValidator = std::make_unique<RangeValidator<int>>(currentYear() - MAX_AGE, currentYear() - MIN_AGE);
 
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
     idField->addValidator(idValidator.get());
+    yearOfBirthField->addValidator(ageValidator.get());
 
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
     myForm.addField(idField.get());
+    myForm.addField(yearOfBirthField.get());
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();

@@ -5,5 +5,5 @@
 class NoDigitValidator :public Validator<std::string> {
 public:
 	NoDigitValidator() {}
-	bool checkValid(std::string) override;
+	bool checkValid(const std::string&) override;
 };

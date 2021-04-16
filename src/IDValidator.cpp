@@ -1,11 +1,11 @@
 #pragma once
 #include "IDValidator.h"
 //took the java script code from wiki and changed to cpp..
-bool IDValidator::checkValid(uint32_t curId) {
+bool IDValidator::checkValid(const uint32_t& curId) {
     auto id = std::to_string(curId);
     int sum = 0, incNum;
-    while(id.length() < 9) {  // Make sure ID is formatted properly
-        id.insert(0, std::string("0"));
+    if(id.length() != 9 ) {  // Make sure ID is formatted properly
+        return false;
     }
     for (int i = 0; i < id.length();i++) {
 		incNum = int(id[i]-'0') * ((i % 2) + 1);  // Multiply number by 1 or 2

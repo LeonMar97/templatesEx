@@ -5,4 +5,5 @@ target_sources (Templates PRIVATE
 								  "Form.cpp"
 								  "BaseField.cpp"
 								  "IDValidator.cpp"								 
+								  "RangeValidator.cpp"								 
 								  "Validator.cpp")
