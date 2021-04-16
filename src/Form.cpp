@@ -19,6 +19,7 @@ bool Form::validateForm() {
 		if (baseField->validInfo()) {
 			m_validFields.push_back(baseField);
 			m_invalidFields.erase(m_invalidFields.begin() + i);
+			i--;
 		}
 	}
 	return m_invalidFields.empty();

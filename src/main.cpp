@@ -20,6 +20,10 @@
 // Works only on std::string.
 #include "NoDigitValidator.h"
 
+// A class that represents an ID validator.
+// ID validation is done using the control digit.
+// Works only on the type 'uint32_t'.
+#include "IDValidator.h"
 
 
 //------------------- Function declarations ----------------------------
@@ -56,17 +60,20 @@ int main()
 {
     // Creating the form fields
     auto nameField = std::make_unique<Field<std::string>>("What is your name?");
+    auto idField = std::make_unique<Field<uint32_t>>("What is your ID?");
 
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
+    auto idValidator = std::make_unique<IDValidator>();
 
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
+    idField->addValidator(idValidator.get());
 
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
-
+    myForm.addField(idField.get());
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();
