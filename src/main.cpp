@@ -70,6 +70,9 @@ int main()
     auto nightsNumField = std::make_unique<Field<int>>("How many nights do you wish to invite?");
     auto pairRoomsField = std::make_unique<Field<int>>("How many pair rooms do you want?");
     auto familyRoomsField = std::make_unique<Field<int>>("How many family rooms do you want?");
+    auto totalPeopleField = std::make_unique<Field<int>>("How many people?");
+    auto kidsUnder18Field = std::make_unique<Field<int>>("Number of children under 18?");
+    auto adultsAbove18Field = std::make_unique<Field<int>>("Number of adults over 18?");
 
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
@@ -77,18 +80,22 @@ int main()
     auto ageValidator = std::make_unique<RangeValidator<int>>(currentYear() - MAX_AGE, currentYear() - MIN_AGE);
     auto dateValidator = std::make_unique<DateValidator<int>>();
     auto nightsValidator = std::make_unique<NonNegativeValidator<int>>();
+    auto totalPeopleValidator = std::make_unique<NonNegativeValidator<int>>();
     auto totalPairRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
     auto totalFamilyRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
-
+    auto kidsUnder18Validator = std::make_unique<NonNegativeValidator<int>>();
+    auto adultsAbove18Validator = std::make_unique<NonNegativeValidator<int>>();
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
     idField->addValidator(idValidator.get());
     yearOfBirthField->addValidator(ageValidator.get());
     startDateField->addValidator(dateValidator.get());
     nightsNumField->addValidator(nightsValidator.get());
+    totalPeopleField->addValidator(totalPeopleValidator.get());
     pairRoomsField->addValidator(totalPairRoomsValidator.get());
     familyRoomsField->addValidator(totalFamilyRoomsValidator.get());
-
+    kidsUnder18Field->addValidator(kidsUnder18Validator.get());
+    adultsAbove18Field->addValidator(adultsAbove18Validator.get());
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
@@ -98,7 +105,9 @@ int main()
     myForm.addField(nightsNumField.get());
     myForm.addField(pairRoomsField.get());
     myForm.addField(familyRoomsField.get());
-
+    myForm.addField(totalPeopleField.get());
+    myForm.addField(kidsUnder18Field.get());
+    myForm.addField(adultsAbove18Field.get());
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();
