@@ -69,6 +69,7 @@ int main()
     auto startDateField = std::make_unique<Field<int>>("What is the date on which you wish to start your vacation? (ddmmyyyy)");
     auto nightsNumField = std::make_unique<Field<int>>("How many nights do you wish to invite?");
     auto pairRoomsField = std::make_unique<Field<int>>("How many pair rooms do you want?");
+    auto familyRoomsField = std::make_unique<Field<int>>("How many family rooms do you want?");
 
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
@@ -77,6 +78,7 @@ int main()
     auto dateValidator = std::make_unique<DateValidator<int>>();
     auto nightsValidator = std::make_unique<NonNegativeValidator<int>>();
     auto totalPairRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
+    auto totalFamilyRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
 
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
@@ -85,6 +87,7 @@ int main()
     startDateField->addValidator(dateValidator.get());
     nightsNumField->addValidator(nightsValidator.get());
     pairRoomsField->addValidator(totalPairRoomsValidator.get());
+    familyRoomsField->addValidator(totalFamilyRoomsValidator.get());
 
     // Creating the form and adding the fields to it
     auto myForm = Form();
@@ -94,6 +97,7 @@ int main()
     myForm.addField(startDateField.get());
     myForm.addField(nightsNumField.get());
     myForm.addField(pairRoomsField.get());
+    myForm.addField(familyRoomsField.get());
 
     // Getting the information from the user
     clearScreen();
