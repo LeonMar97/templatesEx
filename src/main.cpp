@@ -26,6 +26,7 @@
 #include "IDValidator.h"
 #include "RangeValidator.h"
 #include"DateValidator.h"
+#include "NonNegativeValidator.h"
 
 
 //------------------- Function declarations ----------------------------
@@ -66,22 +67,30 @@ int main()
     auto idField = std::make_unique<Field<uint32_t>>("What is your ID?");
     auto yearOfBirthField = std::make_unique<Field<int>>("What is your year of birth?");
     auto startDateField = std::make_unique<Field<int>>("What is the date on which you wish to start your vacation? (ddmmyyyy)");
+    auto nightsNumField = std::make_unique<Field<int>>("How many nights do you wish to invite?");
+
     // Creating the field validators
     auto nameValidator = std::make_unique<NoDigitValidator>();
     auto idValidator = std::make_unique<IDValidator>();
     auto ageValidator = std::make_unique<RangeValidator<int>>(currentYear() - MAX_AGE, currentYear() - MIN_AGE);
     auto dateValidator = std::make_unique<DateValidator<int>>();
+    auto nightsValidator = std::make_unique<NonNegativeValidator<int>>();
+
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
     idField->addValidator(idValidator.get());
     yearOfBirthField->addValidator(ageValidator.get());
     startDateField->addValidator(dateValidator.get());
+    nightsNumField->addValidator(nightsValidator.get());
+
     // Creating the form and adding the fields to it
     auto myForm = Form();
     myForm.addField(nameField.get());
     myForm.addField(idField.get());
     myForm.addField(yearOfBirthField.get());
     myForm.addField(startDateField.get());
+    myForm.addField(nightsNumField.get());
+
     // Getting the information from the user
     clearScreen();
     displayWelcomeMessage();

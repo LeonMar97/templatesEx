@@ -12,7 +12,7 @@ public:
 	bool checkValid(const T&) override;
 	std::string error_msg()override;
 private:
-	//T m_startDate;
+	
 	
 };
 
