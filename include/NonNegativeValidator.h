@@ -5,7 +5,7 @@
 #include<iomanip>
 
 template<typename T>
-class DateValidator : public Validator<T> {
+class NonNegativeValidator : public Validator<T> {
 public:
 	
 	using Validator<T>::Validator;
