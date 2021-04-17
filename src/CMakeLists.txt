@@ -8,4 +8,5 @@ target_sources (Templates PRIVATE
 								  "RangeValidator.cpp"								 
 								  "Validator.cpp"
 								  "DateValidator.cpp"
-								  "NonNegativeValidator.cpp")
+								  "NonNegativeValidator.cpp"
+								  "NotGreaterThanValidator.cpp")

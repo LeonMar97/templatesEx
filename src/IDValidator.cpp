@@ -14,6 +14,7 @@ bool IDValidator::checkValid(const uint32_t& curId) {
 	return (!(sum % 10));
 }
 
+
 std::string IDValidator::error_msg() {
     return ID_ERR;
 }
