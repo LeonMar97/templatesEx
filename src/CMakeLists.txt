@@ -6,4 +6,5 @@ target_sources (Templates PRIVATE
 								  "BaseField.cpp"
 								  "IDValidator.cpp"								 
 								  "RangeValidator.cpp"								 
-								  "Validator.cpp")
+								  "Validator.cpp"
+								  "DateValidator.cpp")
