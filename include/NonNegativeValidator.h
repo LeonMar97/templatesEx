@@ -7,21 +7,16 @@
 template<typename T>
 class NonNegativeValidator : public Validator<T> {
 public:
-	
-	using Validator<T>::Validator;
+	NonNegativeValidator();
 	bool checkValid(const T&) override;
-	std::string error_msg()override;
 private:
-	
-	
 };
+
+template <typename T>
+NonNegativeValidator<T>::NonNegativeValidator() : Validator<T>(NEG_ERR) {}
 
 template<typename T>
 bool NonNegativeValidator<T>::checkValid(const T& value) {
 	return value >= 0;
 }
 
-template<typename T>
-std::string NonNegativeValidator<T>:: error_msg() {
-	return NIGHTS_ERR;
-}

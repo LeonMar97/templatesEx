@@ -1,6 +1,11 @@
 #pragma once
 #include "IDValidator.h"
 //took the java script code from wiki and changed to cpp..
+
+IDValidator::IDValidator()
+    : Validator(ID_ERR)
+{}
+
 bool IDValidator::checkValid(const uint32_t& curId) {
     auto id = std::to_string(curId);
     int sum = 0, incNum;
@@ -12,9 +17,4 @@ bool IDValidator::checkValid(const uint32_t& curId) {
 		sum += (incNum > 9) ? incNum - 9 : incNum;  // Sum the digits up and add to total
 	}
 	return (!(sum % 10));
-}
-
-
-std::string IDValidator::error_msg() {
-    return ID_ERR;
 }

@@ -7,14 +7,15 @@
 template<typename T>
 class DateValidator : public Validator<T> {
 public:
-	
-	using Validator<T>::Validator;
+	DateValidator();
 	bool checkValid(const T&) override;
-	std::string error_msg()override;
 private:
-	
-	
 };
+
+template <typename T>
+DateValidator<T>::DateValidator() 
+	: Validator<T>(DATE_ERR)
+{}
 
 template<typename T>
 bool DateValidator<T>::checkValid(const T& value) {
@@ -34,9 +35,4 @@ bool DateValidator<T>::checkValid(const T& value) {
 		
 	return true;
 
-}
-
-template<typename T>
-std::string DateValidator<T>:: error_msg() {
-	return DATE_ERR;
 }

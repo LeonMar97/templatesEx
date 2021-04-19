@@ -4,9 +4,7 @@
 
 class NoDigitValidator :public Validator<std::string> {
 public:
-	NoDigitValidator() {}
+	NoDigitValidator();
 	bool checkValid(const std::string&) override;
-	std::string error_msg()override;
-
 };
 
