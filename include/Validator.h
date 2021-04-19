@@ -9,5 +9,5 @@ public:
 	virtual bool checkValid(const T&) = 0;
 	virtual std::string error_msg() = 0;
 private :
-	//std::string m_msg;
+	std::string m_msg = "hello";
 };

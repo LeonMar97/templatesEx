@@ -44,5 +44,5 @@ void Field<T>::print(std::ostream& os) {
 	os << "---------------------------------------" << std::endl;
 	os << "---------------------------------------" << std::endl;
 
-	os << m_request << " = " << m_info<<'\t'<<m_validator->error_msg()<<std::endl;
+	os << m_request << " = " << m_info<<'\t'<<m_validator->m_msg()<<std::endl;
 }
