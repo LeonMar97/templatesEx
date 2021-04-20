@@ -1,8 +1,12 @@
 #pragma once
-#include "Field.h"
-template<typename T>
-class peopleSumFieldsValidator :Validator<T>{
+#include <Validator.h>
+class SumValidator : Validator<int>{
  
-	peopleSumFieldsValidator(const std::string& errorMsg, )
+	SumValidator(const std::string& errorMsg, Field<int>* total, Field<int>* arg1, Field<int>* arg2);
+	bool checkValid(const int&) override;
 };
-peopleSumFieldsValidator()
+
+template<typename T>
+bool SumValidator::checkValid(const int&) {
+	return
+}
