@@ -4,6 +4,8 @@ target_sources (Templates PRIVATE
 								  "NoDigitValidator.cpp"
 								  "Form.cpp"
 								  "BaseField.cpp"
+								  "BaseValidator.cpp"
+								  "SumValidator.cpp"
 								  "IDValidator.cpp"								 
 								  "RangeValidator.cpp"								 
 								  "Validator.cpp"

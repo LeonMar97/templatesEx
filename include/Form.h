@@ -16,9 +16,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Form& form);
 private:
 	std::vector<BaseField*>m_validFields ;
-	std::vector<BaseField*>m_invalidfields ;
-	std::vector<BaseValidator*>m_invalidfields ;
-
+	std::vector<BaseField*>m_invalidFields ;
+	std::vector<BaseValidator*>m_formValidators;
 };
 
 template<typename T>
@@ -26,3 +25,7 @@ void Form::addField(Field<T>* curField) {
 	m_invalidFields.push_back(curField);
 }
 
+template<typename T>
+void Form::addValidator(Validator<T>* curValidator) {
+	m_formValidators.push_back(curValidator);
+}
