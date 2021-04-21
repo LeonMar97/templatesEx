@@ -1,14 +1,14 @@
 #pragma once
 #include <string>
 #include "BaseField.h"
-#include "Validator.h"
+#include "FieldValidator.h"
 
 template<typename T>
 class Field :public BaseField {
 
 public:
-	Field(const std::string& re) :m_request(re), m_validator(NULL){}
-	void addValidator(Validator <T>* val);
+	Field(const std::string& re) :m_request(re), m_validators(NULL){}
+	void addValidator(FieldValidator <T>* val);
 	void fillInfo();
 	bool validInfo();
 	void print_request()override ;
@@ -17,12 +17,12 @@ private:
 	//T m_error;
 	T m_info;
 	std::string m_request;
-	Validator<T>* m_validator;
+	std::vector<FieldValidator<T>*> m_validators;
 };
 
 template<typename T>
-void Field<T>::addValidator(Validator <T>* val) {
-	m_validator = val;
+void Field<T>::addValidator(FieldValidator <T>* val) {
+	m_validators.push_back(val);
 };
 template<typename T>
 void Field<T>::print_request() {
@@ -36,7 +36,11 @@ void Field<T>::fillInfo() {
 
 template<typename T>
 bool Field<T>::validInfo() {
-	return m_validator->checkValid(m_info);
+	for (BaseFieldValidator cur* : m_validators) {
+		if (!cur->checkValid(m_info))
+			return false;
+	}
+	return true;
 }
 template<typename T>
 void Field<T>::print(std::ostream& os) {
@@ -44,5 +48,5 @@ void Field<T>::print(std::ostream& os) {
 	os << "---------------------------------------" << std::endl;
 	os << "---------------------------------------" << std::endl;
 
-	os << m_request << " = " << m_info<<'\t' << m_validator <<std::endl;
+	os << m_request << " = " << m_info<<'\t' << m_validators <<std::endl;
 }
