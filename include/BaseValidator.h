@@ -1,4 +1,12 @@
 #pragma once
-#include <iostream>  
-//basic class for pointing at same tamplate field..
-class BaseValidator {};
+#include <macros.h>
+#include<iostream>
+#include <string>
+
+class BaseValidator {
+public:
+	BaseValidator(std::string errorMsg) : m_errorMsg(errorMsg) {}
+	std::string getMsg();
+private:
+	std::string m_errorMsg;
+};

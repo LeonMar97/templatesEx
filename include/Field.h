@@ -18,6 +18,7 @@ private:
 	T m_info;
 	std::string m_request;
 	std::vector<FieldValidator<T>*> m_validators;
+	std::vector<bool>unvalid;
 };
 
 template<typename T>
@@ -36,8 +37,10 @@ void Field<T>::fillInfo() {
 
 template<typename T>
 bool Field<T>::validInfo() {
-	for (BaseFieldValidator cur* : m_validators) {
+	for (int i=0;i<m_validators.length();i++){
+		BaseFieldValidator cur* : m_validators) {
 		if (!cur->checkValid(m_info))
+			
 			return false;
 	}
 	return true;
@@ -48,5 +51,12 @@ void Field<T>::print(std::ostream& os) {
 	os << "---------------------------------------" << std::endl;
 	os << "---------------------------------------" << std::endl;
 
-	os << m_request << " = " << m_info<<'\t' << m_validators <<std::endl;
+	os << m_request << " = " << m_info;
+		for (BaseFieldValidator cur* : m_validators) 
+			os << '\t' << cur;
+			os << std::endl;
+
+		return os;
+
+
 }

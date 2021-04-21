@@ -1,11 +1,11 @@
 #pragma once
-#include "Validator.h"
+#include "FieldValidator.h"
 #include <string>
 #include<chrono>
 #include<iomanip>
 
 template<typename T>
-class NotGreaterThanValidator : public Validator<T> {
+class NotGreaterThanValidator : public FieldValidator<T> {
 public:
 	
 	NotGreaterThanValidator(const T& max);
@@ -15,7 +15,7 @@ private:
 	
 };
 template<typename T>
-NotGreaterThanValidator<T>::NotGreaterThanValidator(const T& max) : Validator<T>(ROOMS_ERR), m_max(max) {}
+NotGreaterThanValidator<T>::NotGreaterThanValidator(const T& max) : FieldValidator<T>(ROOMS_ERR), m_max(max) {}
 
 template<typename T>
 bool NotGreaterThanValidator<T>::checkValid(const T& value) {

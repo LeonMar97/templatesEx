@@ -3,7 +3,7 @@
 //took the java script code from wiki and changed to cpp..
 
 IDValidator::IDValidator()
-    : Validator(ID_ERR)
+    : FieldValidator(ID_ERR)
 {}
 
 bool IDValidator::checkValid(const uint32_t& curId) {

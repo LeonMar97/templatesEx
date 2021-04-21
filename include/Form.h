@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include "Validator.h"
+#include "FormValidator.h"
 #include "Field.h"
 
 class Form {
@@ -10,7 +10,7 @@ public:
 	template<typename T>
 	void addField(Field<T>* curField);
 	template<typename T>
-	void addValidator(Validator<T>* validator);
+	void addValidator(FormValidator<T>* validator);
 	void fillForm();
 	bool validateForm();
 	friend std::ostream& operator<<(std::ostream& os, const Form& form);
@@ -26,6 +26,6 @@ void Form::addField(Field<T>* curField) {
 }
 
 template<typename T>
-void Form::addValidator(Validator<T>* curValidator) {
+void Form::addValidator(FormValidator<T>* curValidator) {
 	m_formValidators.push_back(curValidator);
 }

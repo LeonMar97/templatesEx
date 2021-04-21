@@ -1,6 +1,9 @@
 #pragma once
+#include "BaseValidator.h"
+template<typename  T >
 class BaseFieldValidator : public BaseValidator{
-	BaseFieldValidator(std::string errorMsg);
-	template<typename T>
-	bool checkValid(const T&) = 0;
+public:
+	BaseFieldValidator(const std::string &errorMsg );
+
+	 virtual bool checkValid(const T&) = 0;
 };

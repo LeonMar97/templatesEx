@@ -10,9 +10,3 @@ const std::string BED_ERR = "Number of people doesn't match to the maximum numbe
 
 const int MAX_ROOMS = 10;
 
-template <typename T>
-struct DS {
-	T arg1;
-	T arg2;
-	T sum;
-};

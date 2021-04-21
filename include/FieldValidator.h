@@ -1,12 +1,13 @@
 #pragma once
-#include <BaseFieldValidator.h>
+#include "BaseFieldValidator.h"
 
 template <typename T>
 class FieldValidator : public BaseFieldValidator {
+public:
 	FieldValidator(const std::string& errorMsg);
+
 };
 
 template <typename T>
-FieldValidator::FieldValidator(const std::string& errorMsg)
-	: BaseFieldValidator(errorMsg) 
-{}
+FieldValidator<T>::FieldValidator(const std::string& errorMsg)
+	: BaseFieldValidator(errorMsg) {}
