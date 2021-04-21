@@ -2,14 +2,19 @@
 #include <macros.h>
 #include<iostream>
 #include <string>
-template <class T>
+#include <vector>
+
+template <typename T>
 class Validator {
 public:
-	Validator(std::string errorMsg) : m_errorMsg(errorMsg) {};
-	virtual bool checkValid(const T&) = 0;
+	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { m_ptrInfoV.resize(0); };
+	virtual bool checkValid() = 0;
 	std::string getMsg();
+	void attach(T*);
 private :
 	std::string m_errorMsg;
+protected:
+	std::vector<T*> m_ptrInfoV;
 };
 
 template<typename T>
@@ -21,4 +26,9 @@ std::ostream& operator<<(std::ostream& os, Validator<T> *validator){
 template <typename T>
 std::string Validator<T>::getMsg() {
 	return m_errorMsg;
+}
+
+template <typename T>
+void Validator<T>::attach(T *ptr) {
+	m_ptrInfoV.push_back(ptr);
 }

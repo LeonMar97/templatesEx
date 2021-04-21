@@ -6,7 +6,8 @@ IDValidator::IDValidator()
     : Validator(ID_ERR)
 {}
 
-bool IDValidator::checkValid(const uint32_t& curId) {
+bool IDValidator::checkValid() {
+    auto curId = *m_ptrInfoV[0];
     auto id = std::to_string(curId);
     int sum = 0, incNum;
     if(id.length() != 9 ) {  // Make sure ID is formatted properly

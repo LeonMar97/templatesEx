@@ -2,6 +2,7 @@
 
 NoDigitValidator::NoDigitValidator() : Validator(NAME_ERR) {}
 
-bool NoDigitValidator::checkValid(const std::string& name) {
-	return !(name.find_first_of("0123456789") != std::string::npos);
+//checking if there is a digit in the name
+bool NoDigitValidator::checkValid() {
+	return !(m_ptrInfoV[0]->find_first_of("0123456789") != std::string::npos);
 }

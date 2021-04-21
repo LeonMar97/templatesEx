@@ -8,7 +8,7 @@ template<typename T>
 class NonNegativeValidator : public Validator<T> {
 public:
 	NonNegativeValidator();
-	bool checkValid(const T&) override;
+	bool checkValid() override;
 private:
 };
 
@@ -16,7 +16,7 @@ template <typename T>
 NonNegativeValidator<T>::NonNegativeValidator() : Validator<T>(NEG_ERR) {}
 
 template<typename T>
-bool NonNegativeValidator<T>::checkValid(const T& value) {
-	return value >= 0;
+bool NonNegativeValidator<T>::checkValid() {
+	return *m_ptrInfoV[0] >= 0;
 }
 

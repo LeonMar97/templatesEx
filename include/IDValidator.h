@@ -5,5 +5,5 @@
 class IDValidator:public Validator<uint32_t> {
 public:
 	IDValidator();
-	bool checkValid(const uint32_t&) override;
+	bool checkValid() override;
 };

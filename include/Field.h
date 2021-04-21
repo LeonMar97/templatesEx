@@ -14,7 +14,6 @@ public:
 	void print_request()override ;
 	void print(std::ostream&) override;
 private:
-	//T m_error;
 	T m_info;
 	std::string m_request;
 	Validator<T>* m_validator;
@@ -23,6 +22,7 @@ private:
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
 	m_validator = val;
+	m_validator->attach(m_info); //referring validator to point to relevant information
 };
 template<typename T>
 void Field<T>::print_request() {
