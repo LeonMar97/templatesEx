@@ -7,22 +7,27 @@ template<typename T>
 class Field :public BaseField {
 
 public:
-	Field(const std::string& re) :m_request(re), m_validator(NULL){}
+	Field(const std::string& re) :m_request(re) {}
 	void addValidator(Validator <T>* val);
 	void fillInfo();
 	bool validInfo();
-	void print_request()override ;
+	void print_request()override;
 	void print(std::ostream&) override;
+	const T&  getinfo();
 private:
 	T m_info;
 	std::string m_request;
 	Validator<T>* m_validator;
 };
+template<typename T>
+const T &Field<T>:: getinfo() {
+	return m_info;
+}
 
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
+	val->attach(&m_info);
 	m_validator = val;
-	m_validator->attach(&m_info); //referring validator to point to relevant information
 };
 template<typename T>
 void Field<T>::print_request() {
@@ -44,5 +49,5 @@ void Field<T>::print(std::ostream& os) {
 	os << "---------------------------------------" << std::endl;
 	os << "---------------------------------------" << std::endl;
 
-	os << m_request << " = " << m_info<<'\t' << m_validator <<std::endl;
+	os << m_request << " = " << m_info << '\t' << m_validator << std::endl;
 }

@@ -7,14 +7,15 @@
 template <typename T>
 class Validator {
 public:
-	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { m_ptrInfoV.resize(0); };
+	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { };
 	virtual bool checkValid() = 0;
 	std::string getMsg();
 	void attach(const T* ptr);
 private:
 	std::string m_errorMsg;
 protected:
-	std::vector<const T*>  m_ptrInfoV;
+
+	std::vector< T*>  m_ptrInfoV;
 };
 
 template<typename T>
