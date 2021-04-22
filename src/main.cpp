@@ -28,7 +28,13 @@
 #include"DateValidator.h"
 #include "NonNegativeValidator.h"
 #include "NotGreaterThanValidator.h"
+// A class that implements a sum validator
+// It validates that the value of the first parameter is the same as the sum of the two others
+#include "SumValidator.h"
 
+// A class that implements a sum validator
+// It validates that the value of the first parameter is the same as the sum of the two others
+#include "RoomValidator.h"
 //------------------- Function declarations ----------------------------
 
 // Prints welcome message
@@ -112,7 +118,17 @@ int main()
     clearScreen();
     displayWelcomeMessage();
 
-
+    // Creating form validators
+    auto peopleSumFieldsValidator = std::make_unique<SumValidator>(
+        "Number of adults and children doesn't match total number of people",
+        totalPeopleField.get(),
+        kidsUnder18Field.get(),
+        adultsAbove18Field.get());
+    auto peopleVsRoomsFieldsValidator = std::make_unique<RoomValidator>(
+        "Number of people doesn't match to the maximum number of people that can be entered as you invite",
+        pairRoomsField.get(),
+        familyRoomsField.get(),
+        totalPeopleField.get());
     // Get the input only for empty or not valid fields
     myForm.fillForm();
 
