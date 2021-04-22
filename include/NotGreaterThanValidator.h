@@ -12,13 +12,12 @@ public:
 	bool checkValid() override;
 private:
 	T m_max;
-	
 };
 template<typename T>
 NotGreaterThanValidator<T>::NotGreaterThanValidator(const T& max) : Validator<T>(ROOMS_ERR), m_max(max) {}
 
 template<typename T>
 bool NotGreaterThanValidator<T>::checkValid() {
-	return *m_ptrInfoV[0] <=m_max;
+	T* value = this->m_ptrInfoV[0];
+	return *value <=m_max;
 }
-

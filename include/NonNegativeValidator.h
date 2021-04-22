@@ -17,6 +17,7 @@ NonNegativeValidator<T>::NonNegativeValidator() : Validator<T>(NEG_ERR) {}
 
 template<typename T>
 bool NonNegativeValidator<T>::checkValid() {
-	return *m_ptrInfoV[0] >= 0;
+	auto p = (*this).m_ptrInfoV[0];
+	return p >= 0;
 }
 

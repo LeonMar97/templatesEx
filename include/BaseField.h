@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>  
+#include <iostream>
 //basic class for pointing at same tamplate field..
 class BaseField {
 public:

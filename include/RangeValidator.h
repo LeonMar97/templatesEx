@@ -17,7 +17,6 @@ RangeValidator<T>::RangeValidator(const T& startRange, const T& endRange) : Vali
 
 template<typename T>
 bool RangeValidator<T>::checkValid() {
-	T* value = *m_ptrInfoV[0];
-	return value > m_startRange && value < m_endRange;
+	T* value = (*this).m_ptrInfoV[0];
+	return *value > m_startRange && *value < m_endRange;
 }
-

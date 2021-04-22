@@ -22,7 +22,7 @@ private:
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
 	m_validator = val;
-	m_validator->attach(m_info); //referring validator to point to relevant information
+	m_validator->attach(&m_info); //referring validator to point to relevant information
 };
 template<typename T>
 void Field<T>::print_request() {
@@ -36,7 +36,7 @@ void Field<T>::fillInfo() {
 
 template<typename T>
 bool Field<T>::validInfo() {
-	return m_validator->checkValid(m_info);
+	return m_validator->checkValid();
 }
 template<typename T>
 void Field<T>::print(std::ostream& os) {
