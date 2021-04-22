@@ -3,9 +3,10 @@
 #include<iostream>
 #include <string>
 #include <vector>
+#include"BaseValidator.h"
 
 template <typename T>
-class Validator {
+class Validator:public BaseValidator {
 public:
 	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { };
 	virtual bool checkValid() = 0;

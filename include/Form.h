@@ -13,6 +13,7 @@ public:
 	bool validateForm();
 	friend std::ostream& operator<<(std::ostream& os, const Form& form);
 private:
+	std::vector<BaseValidator*>m_formValidators;
 	std::vector<BaseField*>m_validFields ;
 	std::vector<BaseField*>m_invalidFields ;
 };
