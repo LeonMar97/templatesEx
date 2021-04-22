@@ -171,7 +171,7 @@ int main()
     clearScreen();
     displayGoodbyeMessage();
     std::cout << myForm << '\n';
-    displayPrice(totalPeopleField.get()->getContent(), pairRoomsField.get()->getContent() + familyRoomsField.get()->getContent());
+    displayPrice(totalPeopleField.get()->getinfo(), pairRoomsField.get()->getinfo() + familyRoomsField.get()->getinfo());
 }
 
 void displayWelcomeMessage()

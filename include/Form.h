@@ -25,7 +25,6 @@ void Form::addField(Field<T>* curField) {
 }
 
 template<typename T>
-
 void Form::addValidator(Validator<T> * curValidator) {
 	m_invalidFormValidators.push_back(curValidator);
 	
