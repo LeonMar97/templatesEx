@@ -11,9 +11,10 @@ public:
 	void addValidator(Validator <T>* val);
 	void fillInfo();
 	bool validInfo();
+	virtual std::string getErrorMsg();
 	void print_request()override;
 	void print(std::ostream&) override;
-	const T&  getinfo();
+	const T&  getContent();
 	const bool  is_valid();
 	void set_valid(bool checked);
 
@@ -24,8 +25,13 @@ private:
 	bool m_valid=false;
 };
 template<typename T>
-const T &Field<T>:: getinfo() {
+const T &Field<T>:: getContent() {
 	return m_info;
+}
+
+template<typename T>
+std::string Field<T>::getErrorMsg() {
+	return m_validator->getErrorMsg();
 }
 template<typename T>
 const bool  Field<T>::is_valid() {
@@ -61,9 +67,5 @@ bool Field<T>::validInfo() {
 }
 template<typename T>
 void Field<T>::print(std::ostream& os) {
-	os << std::endl;
-	os << "---------------------------------------" << std::endl;
-	os << "---------------------------------------" << std::endl;
-
-	os << m_request << " = " << m_info << '\t' << m_validator << std::endl;
+	os << m_request << " = " << m_info;
 }

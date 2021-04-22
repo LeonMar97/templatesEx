@@ -8,13 +8,11 @@
 template <typename T>
 class Validator:public BaseValidator {
 public:
-	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { };
-	std::string getMsg();
+	Validator(std::string errorMsg) : BaseValidator(errorMsg) { };
+	void print(std::ostream&) override;
 	void attach( T* ptr);
 
 private:
-	std::string m_errorMsg;
-
 protected:
 	std::vector< T*>  m_ptrInfoV;
 };
@@ -26,11 +24,13 @@ std::ostream& operator<<(std::ostream& os, Validator<T>* validator) {
 }
 
 template <typename T>
-std::string Validator<T>::getMsg() {
-	return m_errorMsg;
-}
-
-template <typename T>
 void Validator<T>::attach( T* ptr) {
 	m_ptrInfoV.push_back(ptr);
+}
+
+template<typename T>
+void Validator<T>::print(std::ostream& os) {
+	for (auto field : m_ptrInfoV) {
+		os << *field << std::endl;
+	}
 }

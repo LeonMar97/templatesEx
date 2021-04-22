@@ -1,13 +1,11 @@
 #include "Form.h"
 
 void Form::fillForm() {
-
 	for (auto field : m_invalidFields) {
 		if (!field->is_valid()) {
 			field->print_request();
 			field->fillInfo();
 		}
-
 	}
 }
 
@@ -34,11 +32,21 @@ bool Form::validateForm() {
 	return false;
 }
 
-//operator for printing field
+//operator for printing form
 std::ostream& operator<<(std::ostream& os, const Form& form) {
 	for (auto baseField : form.m_invalidFields) {
-		if(!baseField->is_valid())
-		os << *baseField;
+		if (!(baseField->validInfo())) {
+			os << std::endl << "---------------------------------------" << std::endl;
+			os << *baseField << std::endl << "Error: " << baseField->getErrorMsg();
+			os << std::endl << "---------------------------------------" << std::endl;
+		}
+	}
+	for (auto baseVal : form.m_invalidFormValidators) {
+		if (!(baseVal->checkValid())) {
+			os << std::endl << "---------------------------------------" << std::endl;
+			os << *baseVal << std::endl << "Error: " << baseVal->getErrorMsg();
+			os << std::endl << "---------------------------------------" << std::endl;
+		}
 	}
 	return os;
 }
