@@ -10,4 +10,5 @@ target_sources (Templates PRIVATE
 								  "DateValidator.cpp"
 								  "NonNegativeValidator.cpp"
 								  "NotGreaterThanValidator.cpp"
-								  "SumValidator.cpp")
+								  "SumValidator.cpp"
+								  "RoomValidator.cpp")
