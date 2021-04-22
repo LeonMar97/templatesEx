@@ -14,15 +14,29 @@ public:
 	void print_request()override;
 	void print(std::ostream&) override;
 	const T&  getinfo();
+	const bool  is_valid();
+	void set_valid(bool checked);
+
 private:
 	T m_info;
 	std::string m_request;
 	Validator<T>* m_validator;
+	bool m_valid=false;
 };
 template<typename T>
 const T &Field<T>:: getinfo() {
 	return m_info;
 }
+template<typename T>
+const bool  Field<T>::is_valid() {
+	return m_valid;
+}
+
+template<typename T>
+void  Field<T>::set_valid(bool checked) {
+	m_valid = checked;
+}
+
 
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
@@ -41,7 +55,9 @@ void Field<T>::fillInfo() {
 
 template<typename T>
 bool Field<T>::validInfo() {
-	return m_validator->checkValid();
+	bool validation = m_validator->checkValid();
+	set_valid(validation);
+	return validation;
 }
 template<typename T>
 void Field<T>::print(std::ostream& os) {

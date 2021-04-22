@@ -7,5 +7,6 @@ public:
 	virtual void fillInfo() = 0;
 	virtual bool validInfo() = 0;
 	virtual void print(std::ostream&) = 0;
+	virtual const bool  is_valid()=0;
 };
 std::ostream& operator << (std::ostream& os, BaseField&);

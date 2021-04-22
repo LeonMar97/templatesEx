@@ -10,8 +10,14 @@ RoomValidator::RoomValidator(const std::string& errorMsg,
 //check if two fields 
 bool RoomValidator::checkValid() {
 	
-	return (m_ptrInfoV[2]->getinfo() == (m_ptrInfoV[1]->getinfo() + m_ptrInfoV[0]->getinfo()));
+	if (!m_ptrInfoV[2]->getinfo() == (m_ptrInfoV[1]->getinfo() + m_ptrInfoV[0]->getinfo())) {
+		for (auto curF : m_ptrInfoV)
+			curF->set_valid(false);
+		return false;
+	}
+	return true;
+	}
 	
-}
+
 
 

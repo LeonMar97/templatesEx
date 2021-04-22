@@ -1,3 +1,7 @@
 #pragma once
-class BaseValidator {};
+class BaseValidator {
+public:
+	
+	virtual bool checkValid() = 0;
+};
 

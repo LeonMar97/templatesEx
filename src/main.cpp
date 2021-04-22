@@ -7,6 +7,7 @@
 #include <chrono>  // for currentYear() implementation
 #include <ctime>   // for currentYear() implementation
 
+
 //------------------- User includes ----------------------------
 
 // A class that represents a form. A form has many fields
@@ -14,6 +15,11 @@
 
 // A class that represents a field. A field can have one or more validators
 #include "Field.h"
+
+// A class that represents a range validator.
+// It validates if a field value is in a specific range.
+// The type used as template parameter must implement < and > operators.
+#include "RangeValidator.h"
 
 // A class that represents a no-digit-characters validator.
 // It validates that the field value contains no digits.
@@ -24,10 +30,16 @@
 // ID validation is done using the control digit.
 // Works only on the type 'uint32_t'.
 #include "IDValidator.h"
-#include "RangeValidator.h"
-#include"DateValidator.h"
+
+// A class to represent a Non negative value validator.
+// Template class must be able to be > 0;
 #include "NonNegativeValidator.h"
+
+// A class that implements a not-greater-than validator
+// It validates that the value of the first parameter is the not greater than the value of the second one
+// The types used as template parameter must be arithmetic (int-like)
 #include "NotGreaterThanValidator.h"
+
 // A class that implements a sum validator
 // It validates that the value of the first parameter is the same as the sum of the two others
 #include "SumValidator.h"
@@ -35,6 +47,13 @@
 // A class that implements a sum validator
 // It validates that the value of the first parameter is the same as the sum of the two others
 #include "RoomValidator.h"
+
+// A class that implements a date validator
+// It validates that the date of the order has already passed
+// The types used as template parameter must be arithmetic (int-like)
+#include "DateValidator.h"
+
+
 //------------------- Function declarations ----------------------------
 
 // Prints welcome message
@@ -67,7 +86,6 @@ const int ROOMS_NUM = 10;
 
 int main()
 {
-   // int x = currentYear();
     // Creating the form fields
     auto nameField = std::make_unique<Field<std::string>>("What is your name?");
     auto idField = std::make_unique<Field<uint32_t>>("What is your ID?");
@@ -91,6 +109,7 @@ int main()
     auto totalFamilyRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
     auto kidsUnder18Validator = std::make_unique<NonNegativeValidator<int>>();
     auto adultsAbove18Validator = std::make_unique<NonNegativeValidator<int>>();
+
     // Adding the validators to the fields
     nameField->addValidator(nameValidator.get());
     idField->addValidator(idValidator.get());
@@ -102,21 +121,6 @@ int main()
     familyRoomsField->addValidator(totalFamilyRoomsValidator.get());
     kidsUnder18Field->addValidator(kidsUnder18Validator.get());
     adultsAbove18Field->addValidator(adultsAbove18Validator.get());
-    // Creating the form and adding the fields to it
-    auto myForm = Form();
-    myForm.addField(nameField.get());
-    myForm.addField(idField.get());
-    myForm.addField(yearOfBirthField.get());
-    myForm.addField(startDateField.get());
-    myForm.addField(nightsNumField.get());
-    myForm.addField(pairRoomsField.get());
-    myForm.addField(familyRoomsField.get());
-    myForm.addField(totalPeopleField.get());
-    myForm.addField(kidsUnder18Field.get());
-    myForm.addField(adultsAbove18Field.get());
-    // Getting the information from the user
-    clearScreen();
-    displayWelcomeMessage();
 
     // Creating form validators
     auto peopleSumFieldsValidator = std::make_unique<SumValidator>(
@@ -129,6 +133,28 @@ int main()
         pairRoomsField.get(),
         familyRoomsField.get(),
         totalPeopleField.get());
+
+    // Creating the form and adding the fields to it
+    auto myForm = Form();
+    myForm.addField(nameField.get());
+    myForm.addField(idField.get());
+    myForm.addField(yearOfBirthField.get());
+    myForm.addField(startDateField.get());
+    myForm.addField(nightsNumField.get());
+    myForm.addField(pairRoomsField.get());
+    myForm.addField(familyRoomsField.get());
+    myForm.addField(totalPeopleField.get());
+    myForm.addField(kidsUnder18Field.get());
+    myForm.addField(adultsAbove18Field.get());
+
+    // Adding form validator
+    myForm.addValidator(peopleSumFieldsValidator.get());
+    myForm.addValidator(peopleVsRoomsFieldsValidator.get());
+
+    // Getting the information from the user
+    clearScreen();
+    displayWelcomeMessage();
+
     // Get the input only for empty or not valid fields
     myForm.fillForm();
 
@@ -141,14 +167,13 @@ int main()
         std::cout << myForm << '\n';
         myForm.fillForm();
     }
-}
-    /*
+
     clearScreen();
     displayGoodbyeMessage();
     std::cout << myForm << '\n';
     displayPrice(totalPeopleField.get()->getContent(), pairRoomsField.get()->getContent() + familyRoomsField.get()->getContent());
 }
-*/
+
 void displayWelcomeMessage()
 {
     std::cout << "+---------------------------------------------------+\n"

@@ -9,14 +9,13 @@ template <typename T>
 class Validator:public BaseValidator {
 public:
 	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { };
-	virtual bool checkValid() = 0;
 	std::string getMsg();
 	void attach( T* ptr);
 
 private:
 	std::string m_errorMsg;
-protected:
 
+protected:
 	std::vector< T*>  m_ptrInfoV;
 };
 
