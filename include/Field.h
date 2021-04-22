@@ -11,11 +11,11 @@ public:
 	void addValidator(Validator <T>* val);
 	void fillContent();
 	bool validContent();
-	virtual std::string getErrorMsg();
-	void print_request()override;
-	void print(std::ostream&) override;
-	const T&  getContent();
-	const bool  is_valid();
+	std::string getErrorMsg() const;
+	void print_request() const override;
+	void print(std::ostream&) const override;
+	const T&  getContent() const ;
+	const bool  is_valid() const ;
 	void set_valid(bool checked);
 
 private:
@@ -27,19 +27,19 @@ private:
 
 //---------------
 template<typename T>
-const T &Field<T>:: getContent() {
+const T &Field<T>:: getContent() const{
 	return m_content;
 }
 
 //---------------
 template<typename T>
-std::string Field<T>::getErrorMsg() {
+std::string Field<T>::getErrorMsg() const {
 	return m_validator->getErrorMsg();
 }
 
 //---------------
 template<typename T>
-const bool  Field<T>::is_valid() {
+const bool  Field<T>::is_valid() const{
 	return m_valid;
 }
 
@@ -58,7 +58,7 @@ void Field<T>::addValidator(Validator <T>* val) {
 
 //---------------
 template<typename T>
-void Field<T>::print_request() {
+void Field<T>::print_request() const{
 	std::cout << m_request;
 }
 
@@ -78,6 +78,6 @@ bool Field<T>::validContent() {
 
 //---------------
 template<typename T>
-void Field<T>::print(std::ostream& os) {
+void Field<T>::print(std::ostream& os) const {
 	os << m_request << " = " << m_content;
 }

@@ -9,7 +9,7 @@ class NotGreaterThanValidator : public Validator<T> {
 public:
 	
 	NotGreaterThanValidator(const T& max);
-	bool checkValid() override;
+	bool checkValid() const override;
 private:
 	T m_max;
 };
@@ -17,7 +17,7 @@ template<typename T>
 NotGreaterThanValidator<T>::NotGreaterThanValidator(const T& max) : Validator<T>(ROOMS_ERR), m_max(max) {}
 
 template<typename T>
-bool NotGreaterThanValidator<T>::checkValid() {
+bool NotGreaterThanValidator<T>::checkValid() const{
 	auto value = this->m_ptrInfoV[0];
 	return *value <=m_max;
 }

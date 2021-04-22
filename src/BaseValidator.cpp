@@ -3,7 +3,7 @@
 BaseValidator::BaseValidator(const std::string& errorMsg)
 	: m_errorMsg(errorMsg)
 {}
-std::string BaseValidator::getErrorMsg() {
+std::string BaseValidator::getErrorMsg() const {
 	return m_errorMsg;
 }
 

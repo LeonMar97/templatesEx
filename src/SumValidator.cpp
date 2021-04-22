@@ -8,7 +8,7 @@ SumValidator::SumValidator(const std::string& errorMsg, Field<int>* total,
 	m_ptrInfoV.push_back(part2);
 }
 //check if two fields 
-bool SumValidator::checkValid() {
+bool SumValidator::checkValid() const {
 	
 	if (!(m_ptrInfoV[0]->getContent() == (m_ptrInfoV[1]->getContent() + m_ptrInfoV[2]->getContent()))) {
 		for (auto curF : m_ptrInfoV)

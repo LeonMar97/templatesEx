@@ -11,7 +11,7 @@ template <typename T>
 class Validator:public BaseValidator {
 public:
 	Validator(std::string errorMsg) : BaseValidator(errorMsg) { };
-	void print(std::ostream&) override;
+	void print(std::ostream&) const override;
 	void attach( T* ptr); //attach the necessary information to evaluate to this instantiation
 
 private:
@@ -32,7 +32,7 @@ void Validator<T>::attach( T* ptr) {
 }
 
 template<typename T>
-void Validator<T>::print(std::ostream& os) {
+void Validator<T>::print(std::ostream& os) const {
 	for (auto field : m_ptrInfoV) {
 		os << *field << std::endl; //print the request + the information user has inserted
 	}

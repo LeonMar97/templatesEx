@@ -9,7 +9,7 @@ void Form::fillForm() {
 	}
 }
 
-bool Form::validateForm() {
+bool Form::validateForm() const{
 	//checkes first if the normal fields are  validated 
 	int counter = 0;
 		for (int i = 0; i < m_invalidFields.size(); i++) {

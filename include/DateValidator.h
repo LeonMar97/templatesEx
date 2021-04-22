@@ -8,7 +8,7 @@ template<typename T>
 class DateValidator : public Validator<T> {
 public:
 	DateValidator();
-	bool checkValid() override;
+	bool checkValid() const override;
 private:
 };
 
@@ -18,7 +18,7 @@ DateValidator<T>::DateValidator()
 {}
 
 template<typename T>
-bool DateValidator<T>::checkValid() {
+bool DateValidator<T>::checkValid() const{
 	T value = *(this->m_ptrInfoV[0]);
     using clock = std::chrono::system_clock;
     const auto now = clock::to_time_t(clock::now());

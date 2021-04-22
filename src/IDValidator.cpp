@@ -6,7 +6,7 @@ IDValidator::IDValidator()
     : Validator(ID_ERR)
 {}
 
-bool IDValidator::checkValid() {
+bool IDValidator::checkValid() const{
     auto curId = *m_ptrInfoV[0];
     auto id = std::to_string(curId);
     int sum = 0, incNum;

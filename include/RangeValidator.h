@@ -6,7 +6,7 @@ template<typename T>
 class RangeValidator : public Validator<T> {
 public:
 	RangeValidator(const T& startRange, const T& endRange);
-	bool checkValid() override;
+	bool checkValid() const override;
 private:
 	T m_startRange;
 	T m_endRange;
@@ -18,7 +18,7 @@ RangeValidator<T>::RangeValidator(const T& startRange, const T& endRange)
 {}
 
 template<typename T>
-bool RangeValidator<T>::checkValid() {
+bool RangeValidator<T>::checkValid() const{
 	auto value = this->m_ptrInfoV[0]; //get the first (and only one in this case) value from the vector
 	return *value > m_startRange && *value < m_endRange;
 }
