@@ -10,11 +10,11 @@ public:
 	Validator(std::string errorMsg) : m_errorMsg(errorMsg) { m_ptrInfoV.resize(0); };
 	virtual bool checkValid() = 0;
 	std::string getMsg();
-	void attach(T*);
+	void attach(const T * ptr) ;
 private :
 	std::string m_errorMsg;
 protected:
-	std::vector<T*> m_ptrInfoV;
+	 std::vector<const T*>  m_ptrInfoV ;
 };
 
 template<typename T>
@@ -29,6 +29,6 @@ std::string Validator<T>::getMsg() {
 }
 
 template <typename T>
-void Validator<T>::attach(T *ptr) {
+void Validator<T>::attach(const T *ptr) {
 	m_ptrInfoV.push_back(ptr);
 }
