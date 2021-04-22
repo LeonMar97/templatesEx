@@ -10,7 +10,7 @@ SumValidator::SumValidator(const std::string& errorMsg, Field<int>* total,
 //check if two fields 
 bool SumValidator::checkValid() {
 	
-	return (m_ptrInfoV[0] == (m_ptrInfoV[1] + m_ptrInfoV[2]));
+	return (m_ptrInfoV[0]->getinfo() == (m_ptrInfoV[1]->getinfo() + m_ptrInfoV[2]->getinfo()));
 	
 }
 
