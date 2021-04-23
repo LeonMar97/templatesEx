@@ -18,17 +18,17 @@ public:
 	template<typename T>
 	void addValidator(Validator<T>* curValidator);
 private:
-	std::vector<BaseValidator*>m_invalidFormValidators;
-	std::vector<BaseField*>m_invalidFields ;
+	std::vector<BaseValidator*>m_formValidators;
+	std::vector<BaseField*>m_fields ;
 };
 
 template<typename T>
 void Form::addField(Field<T>* curField) {
-	m_invalidFields.push_back(curField);
+	m_fields.push_back(curField);
 }
 
 template<typename T>
 void Form::addValidator(Validator<T> * curValidator) {
-	m_invalidFormValidators.push_back(curValidator);
+	m_formValidators.push_back(curValidator);
 }
 
