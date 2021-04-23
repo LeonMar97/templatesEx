@@ -3,6 +3,13 @@ Exercise 2: Templates
 Written by: Ronen Heifetz,	id: 316481423
 			Leon Markovich, id:
 
+UML:
+https://ibb.co/PYwdWjV
+https://ibb.co/s6spK3y
+
+git:
+https://github.com/LeonMar97/templatesEx
+
 GENERAL INFORMATION
 ============================
 
