@@ -87,39 +87,39 @@ const int ROOMS_NUM = 10;
 int main()
 {
     // Creating the form fields
-    auto nameField          = std::make_unique<Field<std::string>>("What is your name?");
-    auto idField            = std::make_unique<Field<uint32_t>>   ("What is your ID?");
-    auto yearOfBirthField   = std::make_unique<Field<int>>        ("What is your year of birth?");
-    auto startDateField     = std::make_unique<Field<int>>        ("What is the date on which you wish to start your vacation? (ddmmyyyy)");
-    auto nightsNumField     = std::make_unique<Field<int>>        ("How many nights do you wish to invite?");
-    auto pairRoomsField     = std::make_unique<Field<int>>        ("How many pair rooms do you want?");
-    auto familyRoomsField   = std::make_unique<Field<int>>        ("How many family rooms do you want?");
-    auto totalPeopleField   = std::make_unique<Field<int>>        ("How many people?");
-    auto kidsUnder18Field   = std::make_unique<Field<int>>        ("Number of children under 18?");
-    auto adultsAbove18Field = std::make_unique<Field<int>>        ("Number of adults over 18?");
-    
+    auto nameField = std::make_unique<Field<std::string>>("What is your name?");
+    auto idField = std::make_unique<Field<uint32_t>>("What is your ID?");
+    auto yearOfBirthField = std::make_unique<Field<int>>("What is your year of birth?");
+    auto startDateField = std::make_unique<Field<int>>("What is the date on which you wish to start your vacation? (ddmmyyyy)");
+    auto nightsNumField = std::make_unique<Field<int>>("How many nights do you wish to invite?");
+    auto pairRoomsField = std::make_unique<Field<int>>("How many pair rooms do you want?");
+    auto familyRoomsField = std::make_unique<Field<int>>("How many family rooms do you want?");
+    auto totalPeopleField = std::make_unique<Field<int>>("How many people?");
+    auto kidsUnder18Field = std::make_unique<Field<int>>("Number of children under 18?");
+    auto adultsAbove18Field = std::make_unique<Field<int>>("Number of adults over 18?");
+
     // Creating the field validators
-    auto nameValidator             = std::make_unique<NoDigitValidator>();
-    auto idValidator               = std::make_unique<IDValidator>();
-    auto ageValidator              = std::make_unique<RangeValidator<int>>(currentYear() - MAX_AGE, currentYear() - MIN_AGE);
-    auto dateValidator             = std::make_unique<DateValidator<int>>();
-    auto nightsValidator           = std::make_unique<NonNegativeValidator<int>>();
-    auto totalPeopleValidator      = std::make_unique<NonNegativeValidator<int>>();
-    auto totalPairRoomsValidator   = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
+    auto nameValidator = std::make_unique<NoDigitValidator>();
+    auto idValidator = std::make_unique<IDValidator>();
+    auto ageValidator = std::make_unique<RangeValidator<int>>(currentYear() - MAX_AGE, currentYear() - MIN_AGE);
+    auto dateValidator = std::make_unique<DateValidator<int>>();
+    auto nightsValidator = std::make_unique<NonNegativeValidator<int>>();
+    auto totalPeopleValidator = std::make_unique<NonNegativeValidator<int>>();
+    auto totalPairRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
     auto totalFamilyRoomsValidator = std::make_unique<NotGreaterThanValidator<int>>(ROOMS_NUM);
-    auto kidsUnder18Validator      = std::make_unique<NonNegativeValidator<int>>();
-    auto adultsAbove18Validator    = std::make_unique<NonNegativeValidator<int>>();
-  
+    auto kidsUnder18Validator = std::make_unique<NonNegativeValidator<int>>();
+    auto adultsAbove18Validator = std::make_unique<NonNegativeValidator<int>>();
+
     // Adding the validators to the fields
-    nameField         ->addValidator(nameValidator.get());
-    idField           ->addValidator(idValidator.get());
-    yearOfBirthField  ->addValidator(ageValidator.get());
-    startDateField    ->addValidator(dateValidator.get());
-    nightsNumField    ->addValidator(nightsValidator.get());
-    totalPeopleField  ->addValidator(totalPeopleValidator.get());
-    pairRoomsField    ->addValidator(totalPairRoomsValidator.get());
-    familyRoomsField  ->addValidator(totalFamilyRoomsValidator.get());
-    kidsUnder18Field  ->addValidator(kidsUnder18Validator.get());
+    nameField->addValidator(nameValidator.get());
+    idField->addValidator(idValidator.get());
+    yearOfBirthField->addValidator(ageValidator.get());
+    startDateField->addValidator(dateValidator.get());
+    nightsNumField->addValidator(nightsValidator.get());
+    totalPeopleField->addValidator(totalPeopleValidator.get());
+    pairRoomsField->addValidator(totalPairRoomsValidator.get());
+    familyRoomsField->addValidator(totalFamilyRoomsValidator.get());
+    kidsUnder18Field->addValidator(kidsUnder18Validator.get());
     adultsAbove18Field->addValidator(adultsAbove18Validator.get());
 
     // Creating form validators
@@ -177,25 +177,25 @@ int main()
 void displayWelcomeMessage()
 {
     std::cout << "+---------------------------------------------------+\n"
-                 "|                 Hello and welcome                 |\n"
-                 "|       Please fill the details of the order        |\n"
-                 "+---------------------------------------------------+\n";
+        "|                 Hello and welcome                 |\n"
+        "|       Please fill the details of the order        |\n"
+        "+---------------------------------------------------+\n";
 }
 
 void displayErrorMessage()
 {
     std::cout << "+---------------------------------------------------+\n"
-                 "| There was an error in at least one of the fields! |\n"
-                 "|            Please correct the error(s)            |\n"
-                 "+---------------------------------------------------+\n";
+        "| There was an error in at least one of the fields! |\n"
+        "|            Please correct the error(s)            |\n"
+        "+---------------------------------------------------+\n";
 }
 
 void displayGoodbyeMessage()
 {
     std::cout << "+---------------------------------------------------+\n"
-                 "|                    Thank you!                     |\n"
-                 "|           These are your order details:           |\n"
-                 "+---------------------------------------------------+\n";
+        "|                    Thank you!                     |\n"
+        "|           These are your order details:           |\n"
+        "+---------------------------------------------------+\n";
 }
 
 void displayPrice(int totalPeople, int roomNum)
@@ -204,9 +204,9 @@ void displayPrice(int totalPeople, int roomNum)
     const auto priceStr = std::to_string(price);
     const auto spaces = std::string(23 - priceStr.size() / 2, ' ');
     std::cout << "+---------------------------------------------------+\n"
-                 "|                   The price is:                   |\n"
-                 "|" << spaces << priceStr << " NIS " << spaces << "|\n"
-                 "+---------------------------------------------------+\n";
+        "|                   The price is:                   |\n"
+        "|" << spaces << priceStr << " NIS " << spaces << "|\n"
+        "+---------------------------------------------------+\n";
 }
 
 void clearScreen()

@@ -18,7 +18,7 @@ public:
 	template<typename T>
 	void addValidator(Validator<T>* curValidator);
 private:
-	std::vector<BaseValidator*>m_formValidators;
+	std::vector<BaseValidator*>m_formValidators; 
 	std::vector<BaseField*>m_fields ;
 };
 

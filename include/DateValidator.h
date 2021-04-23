@@ -19,7 +19,7 @@ DateValidator<T>::DateValidator()
 
 template<typename T>
 bool DateValidator<T>::checkValid() const{
-	T value = *(this->m_ptrInfoV[0]);
+	T value = *(this->m_ptrContentV[0]);
     using clock = std::chrono::system_clock;
     const auto now = clock::to_time_t(clock::now());
     auto calendarTime = std::tm{};

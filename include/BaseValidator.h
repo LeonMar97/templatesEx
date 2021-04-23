@@ -10,4 +10,4 @@ private:
 	std::string m_errorMsg;
 };
 
-std::ostream& operator << (std::ostream& os, BaseValidator&);
+std::ostream& operator << (std::ostream& os, BaseValidator&);//prints request + content of each field inside

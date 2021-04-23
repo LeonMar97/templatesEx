@@ -10,4 +10,4 @@ public:
 	virtual void print(std::ostream&) const = 0;
 	virtual const bool  is_valid() const =0;
 };
-std::ostream& operator << (std::ostream& os, BaseField&);
+std::ostream& operator << (std::ostream& os, BaseField&); //prints request + content

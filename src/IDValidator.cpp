@@ -7,7 +7,7 @@ IDValidator::IDValidator()
 {}
 
 bool IDValidator::checkValid() const{
-    auto curId = *m_ptrInfoV[0];
+    auto curId = *m_ptrContentV[0];
     auto id = std::to_string(curId);
     int sum = 0, incNum;
     if(id.length() != 9 ) {  // Make sure ID is formatted properly

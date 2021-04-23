@@ -1,63 +1,120 @@
-# Functions Calculator
-**written by Ronen Heifetz && Leon Markovich**
+Exercise 2: Templates
+=============================
+Written by: Ronen Heifetz,	id: 316481423
+			Leon Markovich, id:
 
-# github 
-https://github.com/LeonMar97/functionsExercise
+GENERAL INFORMATION
+============================
 
-Functions Calculator is a calculator capable of performing basic operations on a given set of functions, such as generating new functions out of already generated once, and evaluation at a real point in the domain of a certain function.
+This program is a terminal application used to fill a hotel reservation for a family vacation.
+The basic idea behind this program is that there are fields the user needs to fill, and the program
+validates each and every one individually, and ultimately validates the entire form.
+
+DESIGN
+===========================
+
+------------------
+Validator and Field
+------------------
+The core of this program are the classes Validator and Field. 
+They are both template classes from which all the actual validators and fields inherit.
+
+Fields hold the content the user has inserted with the correct validator to make sure the content is correct,
+Validators hold the fields they need to validate.
+
+Validator has a vector of the type of the field that it supposed to validate, or of type Field with the relevant instantiation
+for form validation.
+
+Field has a Validator member which is supposed to validate the information of the fields, though it is possible
+to extend it to a vector of validators for several validations.
+
+Using the functions addValidator() and attach() it is possible to glue the two of them together for the desired purpose.
+
+------------------
+BaseValidator and BaseField
+------------------
+
+Since Validator and Field are templated functions, they need a common base for each one of their instantiations. 
+The BaseValidator and BaseField are simply for allowing polymorphism on all sorts of fields and validators.
 
 
-**Following is the list of the calculator's available commands:**
+------------------
+Form
+------------------
 
-**"eval(uate) num x "**- Evaluates function #num on x
+The controller of this entire program, it has a vector of fields for all the information the user needs to insert,
+and it has a vector of validators to validate the entire form.
 
-**"poly(nomial)N c0 c1 ... cN-1"**- Creates a polynomial with N coefficients
+------------------
+NoDigitValidator
+------------------
 
-**"mul(tiply)"** num1 num2 - Creates a function that is the multiplication of function #num1 and function #num2
+A validator for checking there are no numbers in the name. Inherits from Validator<string>
+------------------
+IDValidator
+------------------
 
-**"add num1 num2 "**- Creates a function that is the sum of function #num1 and function #num2
+A validator for checking the ID inserted is correct under Israeli terms. Inherits from Validator<uint_32>
 
-**"comp(osite)"** num1 num2 - Creates a function that is the composition offunction #num1 and function #num2
+------------------
+RangeValidator
+------------------
 
-**"log N num"** - Creates a function that computes log N of function #num
+A template validator, inherits from Validator<T> where T is the type of the field it is supposed to validate.
+It is checking if the content of the field is in range of pre-determined values.
 
-**"del(ete) num"**- Deletes function #num from function list
+------------------
+NonNegativeValidator
+------------------
 
-**"help"** - Prints this help screen
-**"exit"**- Exits the program
+A template validator, inherits from Validator<T> where T is the type of the field it is supposed to validate.
+It is checking if the content of the field is non negative
 
-**NOTE**: every number in this function is rounded to 2 points after the decimal dot, beside powers in polynomials
+------------------
+NotGreaterThanValidator
+------------------
 
-# Details and design
-The functions are displayed on the terminal in the form of a list, onto which the user can add the wanted function, using commands that operate on a function or a pair of functions.
+A template validator, inherits from Validator<T> where T is the type of the field it is supposed to validate.
+It is checking if the content of the field is non greater than a pre-determined value
 
-## Classes
-**Function**: ADT base class from which all functions in the calculator inherit. it holds the equation for the function, and the calculation/print methods.
+------------------
+SumValidator
+------------------
 
-**Log**: The logarithm function. default constructor initializes to natural logarithm, additional constructor recieves a positive value and initalizes to logarithm in the given base.
+Used for form validation, it is checking if two types have the sum of the third. (the types must be equal)
+Since Validator class has a vector of types it needs to evaluate, the relevant types are inserted in the constructor
+of this object. The validation depends on the order if insertion.
 
-**Sin**: The sin function
+------------------
+RoomValidator
+------------------
 
-**Polynomial**: The polynomial function. has a constructor that gets vector of coefficients.
+Used for form validation, it is checking if the number of people that can enter in all rooms
+the user required is not greater than the maximum number of people that can be in those rooms.
+The validation depends on the order of insertion in constructor.
 
-**ComplexFun**: ADT base class from which all user-built functions will inherit. 
+List of files
+===========================
 
-**SumFunction**: for all functions that are generated using the addition operator
+BaseField.h					BaseField.cpp
+BaseValidator.h				BaseValidator.cpp
+DateValidator.h				BaseValidator.cpp
+Field.h						Field.cpp
+Form.h						Form.cpp
+IDValidator.h				IDValidator.cpp
+NoDigitValidator.h			NoDigitValidator.cpp
+NonNegativeValidator.h		NonNegativeValidator.cpp
+NotGreaterThanValidator.h	NonGreaterThanValidator.cpp
+RangeValidator.h			RangeValidator.cpp
+SumValidator.cpp			SumValidator.cpp
+Validator.h					Validator.cpp
+macros.h
 
-**MulFunction**: for all functions that are generated using the multiplication operator
-
-**ComposeFunction**: for all functions that are generated using the composition operator
-
-**List**: data structure of calculator.
-
-## UML
-![img](https://i.imgur.com/7svMebS.png)
-
-# Data Structures
-We built a class "Function_list" as data structure. it contains a vector for shared pointers of type Function (ADT).
-It can add new functions to the vector, remove functions, and the entire program runs based on this class.
-
-# Noteworthy algorithms
-None
-# Known Bugs
-None
+DATA STRUCTURES
+==========================
+NOTEWORTHY ALGORHTIMS
+==========================
+KNOWN BUGS
+==========================
+ELSE
+==========================

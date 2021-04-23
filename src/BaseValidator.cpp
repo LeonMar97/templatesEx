@@ -7,7 +7,7 @@ std::string BaseValidator::getErrorMsg() const {
 	return m_errorMsg;
 }
 
-std::ostream& operator<<(std::ostream& os, BaseValidator& baseField) {
-	baseField.print(os);
+std::ostream& operator<<(std::ostream& os, BaseValidator& baseValidator) {
+	baseValidator.print(os);
 	return os;
 }

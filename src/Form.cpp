@@ -32,19 +32,18 @@ bool Form::validateForm() const{
 	return false;
 }
 
-//operator for printing form
+//operator for printing form with content and error messages
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-	bool print = true;
+	bool printFormValidatorErrors = true;
 	for (auto baseField : form.m_fields) {
-		os << std::endl << "---------------------------------------" << std::endl;
-		os << *baseField << std::endl;
+		os << std::endl << "---------------------------------------" << std::endl << *baseField << std::endl;
 		if (!(baseField->validContent())) {
 			os << "Error: " << baseField->getErrorMsg();
-			print = false;
+			printFormValidatorErrors = false;
 		}
 		os << std::endl << "---------------------------------------" << std::endl;
 	}
-	if (print) {
+	if (printFormValidatorErrors) {
 		os << std::endl << "---------------------------------------" << std::endl;
 		for (auto baseVal : form.m_formValidators) {
 			if (!(baseVal->checkValid()))

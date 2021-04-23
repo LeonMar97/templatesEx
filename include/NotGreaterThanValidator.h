@@ -18,6 +18,6 @@ NotGreaterThanValidator<T>::NotGreaterThanValidator(const T& max) : Validator<T>
 
 template<typename T>
 bool NotGreaterThanValidator<T>::checkValid() const{
-	auto value = this->m_ptrInfoV[0];
+	auto value = this->m_ptrContentV[0];
 	return *value <=m_max;
 }

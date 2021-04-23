@@ -19,7 +19,7 @@ public:
 private:
 	bool m_valid=false;
 protected:
-	std::vector< T*>  m_ptrInfoV; //The entire data this instantiation needs to evaluate
+	std::vector< T*>  m_ptrContentV; //The entire data this instantiation needs to validate
 };
 
 template<typename T>
@@ -38,15 +38,15 @@ std::ostream& operator<<(std::ostream& os, Validator<T>* validator) {
 	return os;
 }
 
-//put int the vector the necessary information to evaluate
+//put int the vector the necessary information to validate
 template <typename T>
 void Validator<T>::attach( T* ptr) {
-	m_ptrInfoV.push_back(ptr);
+	m_ptrContentV.push_back(ptr);
 }
 
 template<typename T>
 void Validator<T>::print(std::ostream& os) const {
-	for (auto field : m_ptrInfoV) {
-		os << *field << std::endl; //print the request + the information user has inserted
+	for (auto field : m_ptrContentV) {
+		os << *field << std::endl; //print the request + the information user has inserted of all fields of this validator
 	}
 }

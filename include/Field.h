@@ -48,6 +48,7 @@ void  Field<T>::set_valid(bool checked) {
 	m_validator->setValid(checked);
 }
 
+//attach to the validator of the field the content of field to validate
 //---------------
 template<typename T>
 void Field<T>::addValidator(Validator <T>* val) {
@@ -71,8 +72,8 @@ void Field<T>::fillContent() {
 template<typename T>
 bool Field<T>::validContent() {
 	bool validation = m_validator->checkValid();
-	set_valid(validation);
-	return validation;
+	set_valid(validation); //set the validation state of the field - if false, user needs to send a valid content
+	return validation; 
 }
 
 //---------------
