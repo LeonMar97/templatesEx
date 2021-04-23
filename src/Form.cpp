@@ -41,6 +41,8 @@ std::ostream& operator<<(std::ostream& os, const Form& form) {
 			os << "Error: " << baseField->getErrorMsg();
 		os << std::endl << "---------------------------------------" << std::endl;
 	}
+	if (!(os.width()) == 0)
+		return os;
 	os << std::endl << "---------------------------------------" << std::endl;
 	for (auto baseVal : form.m_invalidFormValidators) {
 		if (!(baseVal->checkValid())) 
