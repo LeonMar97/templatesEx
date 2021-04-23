@@ -1,0 +1,90 @@
+class Validator<typename T>{
+virtual bool checkValid()=0
+std::string getMsg()
+void attach(T*)
+std::string errormsg;
+std::vector<T*> m_info
+}
+class Field<typename T>{
+	Field(const std::string& re) :m_request(re) {}
+	void addValidator(Validator <T>* val);
+	void fillContent();
+	bool validContent();
+	std::string getErrorMsg() const;
+	void print_request() const override;
+	void print(std::ostream&) const override;
+	const T&  getContent() const ;
+	const bool  is_valid() const ;
+	void set_valid(bool checked);
+	T m_content;
+	std::string m_request;
+	Validator<T>* m_validator;
+}
+class Form{
+	void fillForm();
+	bool validateForm() const;
+	friend std::ostream& operator<<(std::ostream& os, const Form& form);
+
+	void addField(Field<T>* curField);
+
+	void addValidator(Validator<T>* curValidator);
+	std::vector<BaseValidator*>m_formValidators; 
+	std::vector<BaseField*>m_fields ;
+
+}
+class DateValidator<typename T>{
+	DateValidator();
+	bool checkValid() const override;
+}
+class BaseField{
+	virtual void print_request() const = 0;
+	virtual std::string getErrorMsg() const = 0;
+	virtual void fillContent() = 0;
+	virtual bool validContent() = 0;
+	virtual void print(std::ostream&) const = 0;
+	virtual const bool  is_valid() const =0;
+	std::ostream& operator << (std::ostream& os, BaseField&); 
+}
+
+class IDValidator<typename uint_32>{
+	IDValidator();
+	bool checkValid() const override;
+}
+
+class NoDigitValidator<typename string>{
+	NoDigitValidator();
+	bool checkValid() const override;
+}
+class NoNegativeValidator<typename T>{
+	NoNegativeValidator();
+	bool checkValid() const override;
+}
+class NoGreaterThanValidator<typname T>{
+	NoGreaterThanValidator();
+	bool checkValid() const override;
+}
+
+class RangeValidator<typename T>{
+	NoGreaterThanValidator();
+	bool checkValid() const override;
+}
+
+class RoomValidator<typename int>{
+	RoomValidator();
+	bool checkValid() const override;
+}
+
+class SumValidator<typename int>{
+	RoomValidator();
+	bool checkValid() const override;
+}
+
+SumValidator--|>Validator
+RoomValidator--|>Validator
+RangeValidator--|>Validator
+DateValidator--|>Validator
+IDValidator--|>Validator
+NoDigitValidator--|>Validator
+NoNegativeValidator--|>Validator
+NoGreaterThanValidator--|>Validator
+Field --|> BaseField

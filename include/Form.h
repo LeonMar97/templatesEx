@@ -6,7 +6,6 @@
 
 class Form {
 public:
-	Form() {};
 	void fillForm();
 	bool validateForm() const;
 	friend std::ostream& operator<<(std::ostream& os, const Form& form);
