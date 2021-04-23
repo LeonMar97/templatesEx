@@ -13,12 +13,25 @@ public:
 	Validator(std::string errorMsg) : BaseValidator(errorMsg) { };
 	void print(std::ostream&) const override;
 	void attach( T* ptr); //attach the necessary information to evaluate to this instantiation
+	bool isValid() const;
+	void setValid(bool);
 
 private:
+	bool m_valid=false;
 protected:
 	std::vector< T*>  m_ptrInfoV; //The entire data this instantiation needs to evaluate
 };
 
+template<typename T>
+bool Validator<T>::isValid() const{
+	return m_valid;
+}
+
+//---------------
+template<typename T>
+void Validator<T>::setValid(bool checked) {
+	m_valid = checked;
+}
 template<typename T>
 std::ostream& operator<<(std::ostream& os, Validator<T>* validator) {
 	os << validator->getMsg();

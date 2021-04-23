@@ -22,7 +22,6 @@ private:
 	T m_content;
 	std::string m_request;
 	Validator<T>* m_validator;
-	bool m_valid=false;
 };
 
 //---------------
@@ -40,13 +39,13 @@ std::string Field<T>::getErrorMsg() const {
 //---------------
 template<typename T>
 const bool  Field<T>::is_valid() const{
-	return m_valid;
+	return m_validator->isValid();
 }
 
 //---------------
 template<typename T>
 void  Field<T>::set_valid(bool checked) {
-	m_valid = checked;
+	m_validator->setValid(checked);
 }
 
 //---------------

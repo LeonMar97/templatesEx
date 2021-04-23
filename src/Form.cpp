@@ -34,19 +34,22 @@ bool Form::validateForm() const{
 
 //operator for printing form
 std::ostream& operator<<(std::ostream& os, const Form& form) {
+	bool print = true;
 	for (auto baseField : form.m_fields) {
 		os << std::endl << "---------------------------------------" << std::endl;
 		os << *baseField << std::endl;
-		if (!(baseField->validContent()))
+		if (!(baseField->validContent())) {
 			os << "Error: " << baseField->getErrorMsg();
+			print = false;
+		}
 		os << std::endl << "---------------------------------------" << std::endl;
 	}
-	if (!(os.width()) == 0)
-		return os;
-	os << std::endl << "---------------------------------------" << std::endl;
-	for (auto baseVal : form.m_formValidators) {
-		if (!(baseVal->checkValid())) 
-			os << std::endl << "Error: " << baseVal->getErrorMsg();
+	if (print) {
+		os << std::endl << "---------------------------------------" << std::endl;
+		for (auto baseVal : form.m_formValidators) {
+			if (!(baseVal->checkValid()))
+				os << std::endl << "Error: " << baseVal->getErrorMsg();
+		}
 	}
 	return os;
 }
